@@ -4,7 +4,7 @@
     "package": "whattimeisit.simplemod.mixin",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
-        "ItemDyeMixin",
+        "ItemDyeMixin"
     ],
     "client": [
     ],
