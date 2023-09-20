@@ -3,9 +3,11 @@ package whattimeisit.simplemod;
 import turniplabs.halplibe.helper.TextureHelper;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockCrops;
-import net.minecraft.core.block.material.*;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.enums.EnumDropCause;
+import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.block.entity.TileEntity;
 
 
 public class BlockMintCrop extends BlockCrops {
@@ -31,5 +33,12 @@ public class BlockMintCrop extends BlockCrops {
             meta = 2;
         }
         return this.growthStageTextures[meta];
+    }
+    public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
+        if (meta != 2) {
+            return new ItemStack[]{new ItemStack(SimpleMod.mintCrop)};
+        } else {
+            return new ItemStack[]{new ItemStack(SimpleMod.mintCrop, world.rand.nextInt(3) + 1)};
+        }
     }
 }

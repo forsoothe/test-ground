@@ -15,9 +15,10 @@ import whattimeisit.simplemod.BlockMintCrop;
 final class ItemDyeMixin {
     @Inject(at =@At("HEAD"), method = "onItemUse", cancellable = true)
     private void injected(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced, CallbackInfoReturnable<Boolean> cir) {
+        int meta = world.getBlockMetadata(blockX, blockY, blockZ);
         if (itemstack.getMetadata() == 15) {
             int id = world.getBlockId(blockX, blockY, blockZ);
-            if (Block.blocksList[id] instanceof BlockMintCrop) {
+            if (Block.blocksList[id] instanceof BlockMintCrop && meta < 2) {
                 if (!world.isClientSide) {
                     ((BlockMintCrop) Block.blocksList[id]).fertilize(world, blockX, blockY, blockZ);
                     if (entityplayer.getGamemode().consumeBlocks) {
